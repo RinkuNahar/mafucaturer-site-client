@@ -1,24 +1,21 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from './Loading';
 import './Login.css';
+import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
 
 const LogIn = () => {
 
-    const emailRef = useRef('');
-    const passwordRef = useRef('');
-
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
     const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
-    let errorElement;
-    
-    const navigateRegister = event => {
-        navigate('/register')
-    }
-
+ 
     const [
         signInWithEmailAndPassword,
         user,
@@ -26,72 +23,100 @@ const LogIn = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+    if(user || gUser){
+        navigate(from, { replace: true });
+    }
+    // const [token] = useToken(user|| gUser);
 
-    const handleSubmit = async event => {
-        event.preventDefault();
-        const email = emailRef.current.value;
-        const password = passwordRef.current.value;
-        // await signInWithEmailAndPassword(email, password);
-        // const { data } = await axios.post('/login', { email });
-        // localStorage.setItem('accessToken', data.accessToken);
-        // navigate(from, { replace: true });
+    // useEffect(()=>{
+    //     if (token) {
+    //         navigate(from, { replace: true });
+    //     }
+    // },[token, from, navigate]);
+
+    let errorMessage;
+
+    const [email, setEmail] = useState('');
+
+    const onSubmit = data => {
+        signInWithEmailAndPassword(data.email, data.password)
     }
 
-    let from = location.state?.from?.pathname || "/";
-
-    if (user) {
-        // navigate(from, { replace: true });
-    }
-
-    if (error) {
-        errorElement = <p className='text-danger'>Error : {error?.message}</p>
-    }
-
-    if(loading){
+    if (loading || gLoading) {
         return <Loading></Loading>
     }
 
-    // const resetPassword = async () => {
-    //     const email = emailRef.current.value;
-    //     if(email){
-    //         await sendPasswordResetEmail(email);
-    //     toast('Sent mail');
-    //     }
-    //     else{
-    //         toast('Please enter your email address');
-    //     }
-    // }
+    if (error || gError) {
+        errorMessage = <p className='text-red-500'>{error?.message || gError.message}</p>
+    }
+
 
     return (
-        <div>
-           
-                <h2 className='login-title md:ml-[500px]'>Please Login</h2>
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-3" controlId="formBasicEmail">
+        <div className='flex justify-center items-center h-screen'>
+            <div className="card w-96 bg-base-100 shadow-xl">
+                <div className="card-body">
+                    <h2 className="text-2xl font-bold text-center">LogIn</h2>
 
-                        <input className='input input-bordered input-md w-full md:ml-[500px] sm:ml-[100px] max-w-sm mt-4 mx-auto' ref={emailRef} type="email" placeholder="Enter email" required />
-                    </div>
+                    <form onSubmit={handleSubmit(onSubmit)}>
 
-                    <div className="mb-3" controlId="formBasicPassword">
-                        <input className='input input-bordered input-md w-full md:ml-[500px] sm:ml-[100px] max-w-sm mt-4 mx-auto' ref={passwordRef} type="password" placeholder="Password" required />
-                    </div>
-                    {errorElement}
-                    <btn className='login-button btn mx-auto btn-primary md:ml-[500px] input-md w-50 mt-4 max-w-sm' variant="primary" type="submit">
-                        <p className='pt-1'>Login</p>
-                    </btn>
-                </form>
-                <p className='mt-4 fs-4 new-para md:ml-[500px]'>New to Juicy Warehouse? <Link to={'/register'} className='text-primary text-decoration-none ' onClick={navigateRegister}   >Please Register</Link></p>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Email</span>
+                            </label>
+                            <input name='email' type="email" placeholder="Your Email" className="input input-bordered w-full max-w-xs"  {...register("email", {
+                                required: {
+                                    value: true,
+                                    message: 'Email is required'
+                                },
+                                pattern: {
+                                    value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                                    message: 'Provide a valid Email' // JS only: <p>error message</p> TS only support string
+                                }
+                            })} />
+                            <label className="label">
+                                {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
+                                {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
+                            </label>
+                        </div>
 
-                <p className='mt-4 fs-5 forget-para md:ml-[500px]'>Forget Password? <button to={'/register'} className='text-primary border-0 text-decoration-none  bg-white login-button forget-para ' >Reset Password</button></p>
-                {/* <SocialLogin></SocialLogin> */}
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Password</span>
+                            </label>
+                            <input type="password" placeholder="Password" className="input input-bordered w-full max-w-xs"  {...register("password", {
+                                required: {
+                                    value: true,
+                                    message: 'Password is required'
+                                },
+                                minLength: {
+                                    value: 6,
+                                    message: 'Must be 6 Characters or Longer' // JS only: <p>error message</p> TS only support string
+                                }
+                            })} />
+                            <label className="label">
+                                {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
+                                {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
+                            </label>
+                        </div>
+
+                        {errorMessage}
+
+                        <input className='btn w-full max-w-xs' type="submit" value='LogIn' />
+
+                    </form>
+                    <p className='pr-1'>New to Doctor's Portal?  <Link className='text-primary' to='/register'>Create New Account</Link></p>
 
 
+                    <div className="divider">OR</div>
+                    <button onClick={() => signInWithGoogle()} className="btn btn-outline">Continue With Google</button>
+
+                </div>
             </div>
+        </div>
          
       
     );
 };
 
 export default LogIn;
-// onClick={resetPassword}
+

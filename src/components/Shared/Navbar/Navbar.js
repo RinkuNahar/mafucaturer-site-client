@@ -1,13 +1,17 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../../firebase.init';
 
 const Navbar = () => {
 
-    // const [user] = useAuthState(auth);
-    // const logout = () => {
-    //     signOut(auth);
-    //     localStorage.removeItem('accessToken');
-    // };
+    const [user] = useAuthState(auth);
+    
+    const logout = () => {
+        signOut(auth);
+        localStorage.removeItem('accessToken');
+    };
     
     const menuItems = <>
         <li><Link to='/home'>Home</Link></li>
@@ -15,11 +19,10 @@ const Navbar = () => {
         <li><Link to='/appointment'>Appointment</Link></li>
         <li><Link to='/reviews'>Reviews</Link></li>
         <li><Link to='/contact'>Contact Us</Link></li>
-        <li><Link to='/login'>Login</Link></li>
 
-        {/* {user && <li><Link to="/dashboard">Dashboard</Link></li>}
+        {/* {user && <li><Link to="/dashboard">Dashboard</Link></li>} */}
 
-        <li>{user ? <button onClick={logout} className="btn btn-ghost" >Sign Out</button> : <Link to="/login">Login</Link>}</li> */}
+        <li>{user ? <button onClick={logout} className="btn btn-ghost" >Sign Out</button> : <Link to="/login">Login</Link>}</li>
     </>
     return (
         <div className="navbar bg-base-100 justify-between flex">
