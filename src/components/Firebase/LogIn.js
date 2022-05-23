@@ -12,7 +12,9 @@ const LogIn = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
+
     let errorElement;
+    
     const navigateRegister = event => {
         navigate('/register')
     }

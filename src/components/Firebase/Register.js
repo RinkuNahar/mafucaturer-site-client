@@ -7,6 +7,7 @@ import Loading from './Loading';
 const Register = () => {
     
     const navigate = useNavigate();
+    
     const navigateLogin = () =>{
         navigate('/login')
     }
