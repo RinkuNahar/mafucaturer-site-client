@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Tool.css'
-const Tool = ({ tool }) => {
-    const { _id,name, img, quantity, availableQquantity, price, about } = tool;
+const Tool = (props) => {
+    const { _id,name, img, quantity, availableQuantity, price, about } = props.tool;
 
     const navigate = useNavigate();
 
-    const navigateToPorducts = id =>{
+    const navigateToProducts = id =>{
         navigate(`/purchase/${id}`);
     }
     return (
@@ -18,9 +18,11 @@ const Tool = ({ tool }) => {
                     <p>{about}</p>
                     <h4>Price: {price}</h4>
                     <h3>Quantity: {quantity}</h3>
-                    <h3>Available Quantity: {availableQquantity}</h3>
+
+                    <h3>Available Quantity: {availableQuantity > 1 ?`${availableQuantity}`: <span className='text-red-500'>Right now stock out</span> }</h3>
                     <div class="card-actions justify-end">
-                        <button onClick={()=>navigateToPorducts(_id)} class="btn btn-primary">Place Order</button>
+                        <button disabled={availableQuantity<1} onClick={()=>navigateToProducts(_id)} class="btn btn-primary">Place Order</button>
+                        {props.children}
                     </div>
                 </div>
             </div>
