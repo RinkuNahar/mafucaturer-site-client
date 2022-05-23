@@ -5,9 +5,10 @@ import './Tool.css';
 const Tools = () => {
 
     const [tools, setTools] = useState([]);
+    const [order, setOrder] = useState(null);
 
     useEffect(()=>{
-        fetch('data.json')
+        fetch('http://localhost:5000/purchase')
         .then(res=>res.json())
         .then(data=>setTools(data));
     },[]);
@@ -17,7 +18,8 @@ const Tools = () => {
             <h2 className='text-3xl text-center text-red-800 font-bold'>Tools</h2>
         <div className=' tool '>
             {
-                tools.map(tool=> <Tool key={tool._id} tool={tool}></Tool>)
+                tools.map(tool=> <Tool key={tool._id} tool={tool}
+                setOrder={setOrder}></Tool>)
             }
         </div>
    </div>
