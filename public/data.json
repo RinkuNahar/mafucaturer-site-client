@@ -1,0 +1,29 @@
+[
+    {
+      "_id": "01",
+      "img": "https://i.ibb.co/ch5HSLz/cutter.png",
+      "name": "Cutter",
+      "quantity": 30,
+      "availableQquantity":"50",
+      "price": "$70",
+      "about": "This is finest cutter because it is very sharp"
+    },
+    {
+      "_id": "02",
+      "img": "https://i.ibb.co/pnbS9Dy/hammer.jpg",
+      "name": "Hammer",
+      "quantity": 10,
+      "availableQquantity":"30",
+      "price": "$100",
+      "about": "Guarantee of one year"
+    },
+    {
+      "_id": "03",
+      "img": "https://i.ibb.co/T4Phd6V/measure.webp",
+      "name": "measure",
+      "quantity": 100,
+      "availableQquantity":"300",
+      "price": "$50",
+      "about": "It is very good"
+    }
+]

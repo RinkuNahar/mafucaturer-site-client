@@ -1,0 +1,8 @@
+.tool{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+.tool-img{
+    height: 300px;
+}
