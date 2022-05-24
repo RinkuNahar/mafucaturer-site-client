@@ -20,7 +20,6 @@ const Purchase = () => {
 
         // if(product.minQuantity >= !product.minQuantity){
         //     alert('You can not order less than this amount');
-
         // }
     }
 
