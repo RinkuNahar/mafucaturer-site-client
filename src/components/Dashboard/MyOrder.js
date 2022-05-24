@@ -8,13 +8,13 @@ const MyOrder = () => {
     const [user] = useAuthState(auth);
     const [orders, setOrders] = useState([]);
 
-    useEffect(()=>{
-       if(user){
-        fetch(`http://localhost:5000/order?customer=${user.email}`)
-        .then(res=>res.json())
-        .then(data=>setOrders(data));
-       }
-    },[user])
+    useEffect(() => {
+        if (user) {
+            fetch(`http://localhost:5000/order?customer=${user.email}`)
+                .then(res => res.json())
+                .then(data => setOrders(data));
+        }
+    }, [user])
 
     return (
         <div>
@@ -37,7 +37,7 @@ const MyOrder = () => {
                     <tbody>
 
                         {
-                            orders.map(( a, index) => <tr key={a._id}>
+                            orders.map((a, index) => <tr key={a._id}>
                                 <th>{index + 1}</th>
                                 <td>{a.customerName}</td>
                                 <td>{a.customer}</td>
@@ -48,10 +48,10 @@ const MyOrder = () => {
                                 <td>{a.info}</td>
                                 <td>{(a.price && !a.paid) && <Link to={`/dashboard/payment/${a._id}`}> <button className='btn btn-sm btn-success '>Pay</button> </Link>} </td>
 
-                                 {(a.price && a.paid) && <div>
-                                        <p><span className='text-success'>Paid</span></p>
-                                        <p>Transaction id: <span className='text-success'>{a.transactionId}</span></p>
-                                    </div>}
+                                {(a.price && a.paid) && <div>
+                                    <p><span className='text-success'>Paid</span></p>
+                                    <p>Transaction id: <span className='text-success'>{a.transactionId}</span></p>
+                                </div>}
                             </tr>)
                         }
 
