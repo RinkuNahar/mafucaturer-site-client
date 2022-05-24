@@ -11,17 +11,17 @@ const Tool = ({tool, setOrder}) => {
     }
     return (
         <div>
-            <div class="  w-96 bg-base-100 shadow-xl ">
+            <div className="  w-96 bg-base-100 shadow-xl ">
                 <figure><img src={img} alt="tool" className=' tool-img' /></figure>
-                <div class="card-body">
-                    <h2 class="card-title">{name}</h2>
+                <div className="card-body">
+                    <h2 className="card-title">{name}</h2>
                     <p>{about}</p>
                     <h4>Price: {price}</h4>
                     <h3>Quantity: {quantity}</h3>
 
                     <h3>Available Quantity: {availableQuantity > 1 ?`${availableQuantity}`: <span className='text-red-500'>Right now stock out</span> }</h3>
-                    <div class="card-actions justify-end">
-                        <button disabled={availableQuantity<1} onClick={()=>navigateToProducts(_id)}  class="btn btn-primary">Place Order</button>
+                    <div className="card-actions justify-end">
+                        <button disabled={availableQuantity<1} onClick={()=>navigateToProducts(_id)}  className="btn btn-primary">Place Order</button>
                         {tool.children}
                     </div>
                 </div>
