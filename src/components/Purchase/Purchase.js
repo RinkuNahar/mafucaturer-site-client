@@ -3,7 +3,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
-
+import 'react-toastify/dist/ReactToastify.css';
 const Purchase = () => {
 
     const { ProductId } = useParams();
