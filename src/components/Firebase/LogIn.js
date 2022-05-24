@@ -6,6 +6,7 @@ import Loading from './Loading';
 import './Login.css';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
+import useToken from '../hooks/useToken';
 
 const LogIn = () => {
 
@@ -26,13 +27,13 @@ const LogIn = () => {
     if(user || gUser){
         navigate(from, { replace: true });
     }
-    // const [token] = useToken(user|| gUser);
+    const [token] = useToken(user|| gUser);
 
-    // useEffect(()=>{
-    //     if (token) {
-    //         navigate(from, { replace: true });
-    //     }
-    // },[token, from, navigate]);
+    useEffect(()=>{
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    },[token, from, navigate]);
 
     let errorMessage;
 
