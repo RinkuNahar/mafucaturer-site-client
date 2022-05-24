@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const ReviewEach = ({review}) => {
-    const {name, img, about} = review;
+    const {name, img, about, ratings} = review;
     
     return (
         <div className='mt-0'>
@@ -11,10 +11,13 @@ const ReviewEach = ({review}) => {
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
                 <p>{about}</p>
+                <p>Ratings: {ratings} (Out of 5)</p>
                 </div>
             </div>
-        </div>
 
+ 
+        </div>
+        
     );
 };
 

@@ -30,6 +30,14 @@ const AddReview = () => {
                 <input className='mt-2 w-50 input input-bordered' placeholder='Photo URL' type="text" {...register("img")} /> <br />
                 <input className='mt-2 btn btn-primary' value="Add Reviews" type='submit' />
             </form>
+
+            <div class="rating">
+                <input type="radio" name="rating-1" class="mask mask-star" />
+                <input type="radio" name="rating-1" class="mask mask-star" checked />
+                <input type="radio" name="rating-1" class="mask mask-star" />
+                <input type="radio" name="rating-1" class="mask mask-star" />
+                <input type="radio" name="rating-1" class="mask mask-star" />
+            </div>
         </div>
     );
 };
