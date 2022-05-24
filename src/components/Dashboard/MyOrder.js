@@ -7,6 +7,7 @@ import auth from '../../firebase.init';
 const MyOrder = () => {
 
     const [user] = useAuthState(auth);
+    const[users, setUsers] = useState([]);
     const [orders, setOrders] = useState([]);
     const navigate = useNavigate();
 
@@ -28,7 +29,26 @@ const MyOrder = () => {
                 })
                 .then(data => setOrders(data));
         }
-    }, [user])
+    }, [user]);
+
+    const handleUserDelete = id =>{
+       const proceed = window.confirm('Are You Sure You Want To Delete?');
+       if(proceed){
+           console.log(id);
+           const url =`http://localhost:5000/order/${id}`;
+           fetch(url,{
+               method: 'DELETE',
+           })
+           .then(res=>res.json())
+           .then(data=>{
+              if(data.deletedCount > 0){
+                  console.log('deleted');
+                  const remaining = users.filter(user=>user._id !== id);
+                  setUsers(remaining);
+              }
+           })
+       }
+    }
 
     return (
         <div>
@@ -60,6 +80,9 @@ const MyOrder = () => {
                                 <td>{a.address}</td>
                                 <td>{a.price}</td>
                                 <td>{a.info}</td>
+
+                                <p onClick={()=>handleUserDelete(a._id) } className=' btn btn-sm btn-[red-600]'>Delete</p>
+
                                 <td>{(a.price && !a.paid) && <Link to={`/dashboard/payment/${a._id}`}> <button className='btn btn-sm btn-success '>Pay</button> </Link>} </td>
 
                                 {(a.price && a.paid) && <div>
