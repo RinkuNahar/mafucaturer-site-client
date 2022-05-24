@@ -4,6 +4,7 @@ import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfil
 import auth from '../../firebase.init';
 import Loading from './Loading';
 import { useForm } from 'react-hook-form';
+import useToken from '../hooks/useToken';
 
 const Register = () => {
 
@@ -24,7 +25,7 @@ const Register = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
-    // const [token] = useToken(gUser || user);
+    const [token] = useToken(gUser || user);
 
     const onSubmit = async data => {
         console.log(data);
@@ -42,9 +43,9 @@ const Register = () => {
         errorMessage = <p className='text-red-500'>{error?.message || gError?.message || pError?.message}</p>
     }
 
-    // if (token) {
-    //   navigate('/appointment');
-    // }
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     return (
         <div className='flex justify-center items-center h-screen'>
