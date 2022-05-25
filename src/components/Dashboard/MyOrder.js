@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
-
+import Loading from '../Firebase/Loading'
 const MyOrder = () => {
 
-    const [user] = useAuthState(auth);
+    const [user,loading] = useAuthState(auth);
     const[users, setUsers] = useState([]);
     const [orders, setOrders] = useState([]);
     const navigate = useNavigate();
@@ -31,6 +31,7 @@ const MyOrder = () => {
         }
     }, [user]);
 
+    // delete from my order
     const handleUserDelete = id =>{
        const proceed = window.confirm('Are You Sure You Want To Delete?');
        if(proceed){
@@ -41,13 +42,17 @@ const MyOrder = () => {
            })
            .then(res=>res.json())
            .then(data=>{
-              if(data.deletedCount > 0){
-                  console.log('deleted');
-                  const remaining = users.filter(user=>user._id !== id);
-                  setUsers(remaining);
-              }
+            if(data.deletedCount > 0){
+                console.log('deleted');
+                const remaining = users.filter(user => user._id !== id);
+                setUsers(remaining);
+            }
            })
        }
+    }
+
+    if(loading){
+        return <Loading></Loading>
     }
 
     return (
@@ -81,7 +86,7 @@ const MyOrder = () => {
                                 <td>{a.price}</td>
                                 <td>{a.info}</td>
 
-                                <p onClick={()=>handleUserDelete(a._id) } className=' btn btn-sm btn-[red-600]'>Delete</p>
+                                <button onClick={()=>handleUserDelete(a._id) } className=' btn btn-sm btn-[red-600]'>Delete</button>
 
                                 <td>{(a.price && !a.paid) && <Link to={`/dashboard/payment/${a._id}`}> <button className='btn btn-sm btn-success '>Pay</button> </Link>} </td>
 
