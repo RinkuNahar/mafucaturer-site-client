@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from './Loading';
 import './Login.css';
-import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import useToken from '../hooks/useToken';
 
@@ -36,8 +35,6 @@ const LogIn = () => {
     },[token, from, navigate]);
 
     let errorMessage;
-
-    const [email, setEmail] = useState('');
 
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password)

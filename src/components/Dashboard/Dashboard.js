@@ -8,6 +8,7 @@ const Dashboard = () => {
 
   const [user] = useAuthState(auth);
   const [admin] = useAdmin(user);
+  console.log();
 
   return (
     <div className="drawer drawer-mobile">
@@ -26,7 +27,7 @@ const Dashboard = () => {
           {/* Only user can access */}
           {!admin &&
             <>
-              <li><Link to='/dashboard'>My Orders</Link></li>
+              <li><Link to='/dashboard/myOrder'>My Orders</Link></li>
 
               <li><Link to='/dashboard/review'>My Reviews</Link></li>
               <li><Link to='/dashboard/adReview'>Add Review</Link></li>

@@ -5,7 +5,7 @@ const ManageOrder = () => {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/order')
+        fetch('http://localhost:5000/AllOrder')
             .then(res => res.json())
             .then(data => setOrders(data));
     }, []);
