@@ -15,6 +15,7 @@ import MyProfile from './components/Dashboard/MyProfile';
 import AllUsers from './components/Dashboard/AllUsers';
 import RequireAdmin from './components/Firebase/RequireAdmin';
 import AddProduct from './components/Dashboard/AddProduct';
+import ManageProducts from './components/Dashboard/ManageProducts';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             <Route path='review' element={<MyReview></MyReview>}></Route>
             <Route path='adReview' element={<AddReview></AddReview>}></Route>
             <Route path='addProduct' element={<AddProduct></AddProduct>}></Route>
+            <Route path='manageProduct' element={<ManageProducts></ManageProducts>}></Route>
 
             <Route path='users' element={<RequireAdmin>
               <AllUsers></AllUsers>
