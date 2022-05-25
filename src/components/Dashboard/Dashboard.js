@@ -22,7 +22,7 @@ const Dashboard = () => {
       <div className="drawer-side">
         <label htmlFor="dashboard-sidebar" className="drawer-overlay"></label>
         <ul className="menu p-4 overflow-y-auto w-48 bg-base-100 text-base-content">
-          
+
           {/* Only user can access */}
           {!admin &&
             <>
@@ -39,7 +39,7 @@ const Dashboard = () => {
           {/* only admin can access */}
           {admin && <>
             <li><Link to='/dashboard/users'>All Users</Link></li>
-            {/* <li><Link to='/dashboard/addDoctor'>Add a Doctor</Link></li> */}
+            <li><Link to='/dashboard/addProduct'>Add Product</Link></li>
             {/* <li><Link to='/dashboard/manageDoctor'>Manage Doctors</Link>
             </li> */}
           </>}
