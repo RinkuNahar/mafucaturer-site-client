@@ -79,22 +79,22 @@ const CheckoutForm = ({order}) => {
             setSuccess('Congrats! Your payment is completed.');
 
             // store payment on database
-            const payment = {
-                appointment: _id,
-                transactionId: paymentIntent.id
-            }
-            fetch(`https://salty-ravine-99668.herokuapp.com/booking/${_id}`, {
-                method: 'PATCH',
-                headers: {
-                    'content-type': 'application/json',
-                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-                },
-                body: JSON.stringify(payment)
-            }).then(res => res.json())
-                .then(data => {
-                    setProcessing(false);
-                    console.log(data);
-                })
+            // const payment = {
+            //     appointment: _id,
+            //     transactionId: paymentIntent.id
+            // }
+            // fetch(`/booking/${_id}`, {
+            //     method: 'PATCH',
+            //     headers: {
+            //         'content-type': 'application/json',
+            //         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            //     },
+            //     body: JSON.stringify(payment)
+            // }).then(res => res.json())
+            //     .then(data => {
+            //         setProcessing(false);
+            //         console.log(data);
+            //     })
 
         }
     }
@@ -125,12 +125,12 @@ const CheckoutForm = ({order}) => {
         {
             cardError && <p className='text-red-500'>{cardError}</p>
         }
-        {/* {
+        {
             success && <div className='text-green-500'>
-                <p>{success}  </p>
+                <p>{success} </p>
                 <p>Your transaction Id: <span className="text-orange-500 font-bold">{transactionId}</span> </p>
             </div>
-        } */}
+        }
     </>
     );
 };
