@@ -20,6 +20,7 @@ import ManageOrder from './components/Dashboard/ManageOrder';
 import AddProfile from './components/Dashboard/AddProfile';
 import UpdateUser from './components/Dashboard/UpdateUser';
 import Payment from './components/Dashboard/Payment';
+import Footer from './components/Shared/Footer/Footer';
 
 function App() {
   return (
@@ -62,6 +63,7 @@ function App() {
          
       </Routes>
       <ToastContainer></ToastContainer>
+      <Footer></Footer>
     </div>
   );
 }
