@@ -24,13 +24,13 @@ const LogIn = () => {
     ] = useSignInWithEmailAndPassword(auth);
 
     if(user || gUser){
-        navigate(from, { replace: true });
+        navigate('/home');
     }
     const [token] = useToken(user|| gUser);
 
     useEffect(()=>{
         if (token) {
-            navigate(from, { replace: true });
+            navigate('/home');
         }
     },[token, from, navigate]);
 
