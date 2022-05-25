@@ -1,23 +1,34 @@
-// import React from 'react';
-// import { useAuthState } from 'react-firebase-hooks/auth';
-// import { useForm } from 'react-hook-form';
-// import { useQuery } from 'react-query';
-// import { toast } from 'react-toastify';
-// import auth from '../../firebase.init';
+import { signOut } from 'firebase/auth';
+import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useForm } from 'react-hook-form';
+import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
 
-// const MyProfile = () => {
-//     const {data: profile, isLoading, id } = useQuery('profile', ()=> fetch(`http://localhost:5000/profile`,{
-//         headers: {
-//             authorization: `Bearer ${localStorage.getItem('accessToken')}`
-//         }
-//     })
-//     .then())
+const MyProfile = () => {
+    const [user,loading] = useAuthState(auth);
+    const[users, setUsers] = useState([]);
+    const [orders, setOrders] = useState([]);
+    const navigate = useNavigate();
 
-//     return (
-//         <div>
-//     {profile.length}
-//         </div>
-//     );
-// };
+    useEffect(() => {
+        if (user) {
+            fetch(`http://localhost:5000/profile`,{
+                method: 'GET',
+               
+            })
+                .then(res => res.json())
+                .then(data => setOrders(data));
+        }
+    }, [user]);
 
-// export default MyProfile;
+    return (
+        <div>
+            {orders.length}
+        </div>
+    );
+};
+
+export default MyProfile;

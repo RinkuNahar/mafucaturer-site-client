@@ -12,7 +12,7 @@ const MyOrder = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (user) {
+        if (user.email) {
             fetch(`http://localhost:5000/order?customer=${user.email}`,{
                 method: 'GET',
                 headers: {
@@ -27,7 +27,11 @@ const MyOrder = () => {
                     }
                     return res.json()
                 })
-                .then(data => setOrders(data));
+                .then(data => <>
+                if({user.email}){
+                    setOrders(data)
+                }
+                </>);
         }
     }, [user]);
 
@@ -70,7 +74,8 @@ const MyOrder = () => {
                             <th>Phone</th>
                             <th>Address</th>
                             <th>Price</th>
-                            <th>Info</th>
+                            <th></th>
+                            <th>Payment</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -87,14 +92,14 @@ const MyOrder = () => {
                                 <td>{a.price}</td>
                                 <td>{a.info}</td>
 
-                                <button onClick={()=>handleUserDelete(a._id) } className=' btn btn-sm btn-[red-600]'>Delete</button>
-
                                 <td>{(a.price && !a.paid) && <Link to={`/dashboard/payment/${a._id}`}> <button className='btn btn-sm btn-success '>Pay</button> </Link>} </td>
 
                                 {(a.price && a.paid) && <div>
                                     <p><span className='text-success'>Paid</span></p>
                                     <p>Transaction id: <span className='text-success'>{a.transactionId}</span></p>
                                 </div>}
+
+                                <button onClick={()=>handleUserDelete(a._id) } className=' btn btn-sm btn-[red-600] mt-4'>Delete</button>
                             </tr>)
                         }
 

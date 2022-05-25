@@ -30,6 +30,7 @@ const Dashboard = () => {
 
               <li><Link to='/dashboard/review'>My Reviews</Link></li>
               <li><Link to='/dashboard/adReview'>Add Review</Link></li>
+              {/* <li><Link to='/dashboard/payment'>Add Review</Link></li> */}
 
             </>
           }
