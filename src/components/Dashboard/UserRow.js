@@ -1,12 +1,13 @@
 import React from 'react';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const UserRow = ({user, index, refetch}) => {
 
     const { email, role } = user;
 
     const makeAdmin = () => {
-        fetch(`/user/admin/${email}`, {
+        fetch(`http://localhost:5000/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -19,11 +20,11 @@ const UserRow = ({user, index, refetch}) => {
                 return res.json()
             })
             .then(data => {
+                console.log('added',data);
                 if (data.modifiedCount > 0) {
                     refetch();
                     toast.success(`Successfully made an admin`);
                 }
-
             })
     }
 
