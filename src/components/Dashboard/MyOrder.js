@@ -77,6 +77,7 @@ const MyOrder = () => {
                             <th></th>
                             <th>Payment</th>
                             <th></th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -93,13 +94,19 @@ const MyOrder = () => {
                                 <td>{a.info}</td>
 
                                 <td>{(a.price && !a.paid) && <Link to={`/dashboard/payment/${a._id}`}> <button className='btn btn-sm btn-success '>Pay</button> </Link>} </td>
+                                
+                                <td>{(a.price && !a.paid) && <div>
+                                    
+                                    <button onClick={()=>handleUserDelete(a._id) } className=' btn btn-sm btn-[red-600] mt-4'>Delete</button>
+
+                                    </div>} </td>
 
                                 {(a.price && a.paid) && <div>
                                     <p><span className='text-success'>Paid</span></p>
                                     <p>Transaction id: <span className='text-success'>{a.transactionId}</span></p>
                                 </div>}
 
-                                <button onClick={()=>handleUserDelete(a._id) } className=' btn btn-sm btn-[red-600] mt-4'>Delete</button>
+                               
                             </tr>)
                         }
 
