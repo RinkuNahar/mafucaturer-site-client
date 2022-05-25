@@ -17,6 +17,8 @@ import RequireAdmin from './components/Firebase/RequireAdmin';
 import AddProduct from './components/Dashboard/AddProduct';
 import ManageProducts from './components/Dashboard/ManageProducts';
 import ManageOrder from './components/Dashboard/ManageOrder';
+import AddProfile from './components/Dashboard/AddProfile';
+import UpdateUser from './components/Dashboard/UpdateUser';
 
 function App() {
   return (
@@ -43,6 +45,8 @@ function App() {
             <Route path='addProduct' element={<AddProduct></AddProduct>}></Route>
             <Route path='manageProduct' element={<ManageProducts></ManageProducts>}></Route>
             <Route path='manageOrder' element={<ManageOrder></ManageOrder>}></Route>
+            <Route path='addProfile' element={<AddProfile></AddProfile>}></Route>
+            {/* <Route path='update/:id' element={<UpdateUser></UpdateUser>}></Route> */}
 
             <Route path='users' element={<RequireAdmin>
               <AllUsers></AllUsers>
