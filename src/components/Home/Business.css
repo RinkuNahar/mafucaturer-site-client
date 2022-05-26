@@ -1,0 +1,8 @@
+.b-img{
+    height: 300px;
+}
+
+.business{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}

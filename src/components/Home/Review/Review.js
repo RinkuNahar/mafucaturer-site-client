@@ -12,7 +12,7 @@ const Review = () => {
     },[])
 
     return (
-        <div className='mt-[100px]'>
+        <div className='mt-[250px]'>
             <h2 className='text-3xl text-center text-red-800 font-bold'>Reviews</h2>
         <div className=' tool '>
             {
