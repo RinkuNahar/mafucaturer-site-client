@@ -1,4 +1,11 @@
-# Getting Started with Create React App
+# Project Name : Manufacturer Capital 
+* set react route
+* use node.js express.js 
+* use mongodb as a database
+* use firebase for sign in and login
+* admin can add product update as their wish and also can delivered them
+
+# Project Live Site : https://manufactur-capital.web.app/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
