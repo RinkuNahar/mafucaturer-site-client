@@ -22,6 +22,7 @@ import UpdateUser from './components/Dashboard/UpdateUser';
 import Payment from './components/Dashboard/Payment';
 import Footer from './components/Shared/Footer/Footer';
 import NotFound from './components/Home/NotFound/NotFound';
+import Blog from './components/Home/Blog/Blog';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       <Routes>
           <Route path='/' element={<Home></Home>}></Route>
           <Route path='/home' element={<Home></Home>}></Route>
+          <Route path='/blog' element={<Blog></Blog>}></Route>
 
           <Route path='/purchase/:ProductId' element={
          <RequireAuth>
