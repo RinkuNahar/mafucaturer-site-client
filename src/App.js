@@ -21,6 +21,7 @@ import AddProfile from './components/Dashboard/AddProfile';
 import UpdateUser from './components/Dashboard/UpdateUser';
 import Payment from './components/Dashboard/Payment';
 import Footer from './components/Shared/Footer/Footer';
+import NotFound from './components/Home/NotFound/NotFound';
 
 function App() {
   return (
@@ -61,6 +62,9 @@ function App() {
 
           <Route path='/login' element={<LogIn></LogIn>}></Route>
           <Route path='/register' element={<Register></Register>}></Route>
+
+          <Route path='*' element={<NotFound></NotFound>}></Route>
+
          
       </Routes>
       <ToastContainer></ToastContainer>
