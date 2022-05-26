@@ -20,7 +20,6 @@ const ManageOrder = () => {
 
     const delivered = (id) => {
 
-
         fetch(`http://localhost:5000/statusOrder/${id}`, {
             method: 'PUT',
             headers: {
@@ -35,7 +34,6 @@ const ManageOrder = () => {
                 // setItem(data)
                 console.log(data);
             })
-
 
     }
 

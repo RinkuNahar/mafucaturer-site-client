@@ -35,7 +35,7 @@ const Dashboard = () => {
           {/* common route */}
           <li><Link to='/dashboard/profile'>My Profile</Link></li>
           <li><Link to='/dashboard/addProfile'>Add Profile</Link></li>
-          {/* <li><Link to={`/dashboard/update/${user.uid}`}>Update Profile</Link></li> */}
+          {/* <li><Link to={`/dashboard/update`}>Update Profile</Link></li> */}
 
           {/* only admin can access */}
           {admin && <>

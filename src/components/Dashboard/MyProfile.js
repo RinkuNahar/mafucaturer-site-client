@@ -1,14 +1,13 @@
-import { toBeDisabled } from '@testing-library/jest-dom/dist/matchers';
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useForm } from 'react-hook-form';
+
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Firebase/Loading';
-import useAdmin from '../hooks/useAdmin';
+
 
 const MyProfile = () => {
 
@@ -17,6 +16,7 @@ const MyProfile = () => {
             .then(res => res.json()));
 
     const [user, loading] = useAuthState(auth);
+    
 
     // const [orders, setOrders] = useState([]);
     const navigate = useNavigate();
@@ -51,11 +51,23 @@ const MyProfile = () => {
         return <Loading></Loading>
     }
 
+    //----------- update-------------//
+    const updateProfile =(id)=>{
+        fetch(`http://localhost:5000/profile/${id}`)
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data);
+        });
+        // navigate('/dashboard/update')
+        
+    }
+
     return (
         <div>
             {/* <p>{profile.name}</p> */}
             <p>
-                {profile.map(p => <>
+                {profile.map(p => <> 
+              
                     <div class="card w-96 bg-base-100 shadow-xl">
                         <div class="card-body">
                             <h2 class="text-center font-bold text-2xl">{p.name}</h2>
@@ -66,7 +78,7 @@ const MyProfile = () => {
                             <h3 class="text-center font-semibold text-xl">LinkedIn Id: <span>{p.linked}</span></h3>
                            
                             <div class="card-actions justify-end">
-                                <button class="btn btn-primary">Update</button>
+                                <button onClick={()=>updateProfile(p._id)} class="btn btn-primary">Update</button>
                             </div>
                         </div>
                     </div>

@@ -3,22 +3,20 @@
 // import { useParams } from 'react-router-dom';
 // import auth from '../../firebase.init';
 
-// const UpdateUser = () => {
-//     const {id} = useParams();
-//     const [update, setUpdate] = useState([]);
-//     const [user] =useAuthState(auth);
+// const UpdateUser = ({profile}) => {
+//     // const [status, setStatus] = useState(p.id?true: false)
+//  const{name} = profile
+//    fetch(`http://localhost:5000/profile/${name}`)
+//         .then(res=>res.json())
+//         .then(data=>{
+//             console.log(data);
+//         });
 
-//     useEffect(()=>{
-//         const url =`http://localhost:5000/user/${id}`;
-//         fetch(url)
-//         .then(res=>res.json)
-//         .then(data=>setUpdate(data))
-//     })
 //     return (
 //         <div>
-//            <p>hi: {id}</p>
-//            <p>name: {user.displayName}</p>
-//            <p>name: {user.email}</p>
+         
+//            <p>name: {profile.name}</p>
+//            {/* <p>name: {p.email}</p> */}
 //         </div>
 //     );
 // };

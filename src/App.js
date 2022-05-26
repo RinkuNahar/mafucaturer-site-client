@@ -53,7 +53,7 @@ function App() {
             <Route path='manageOrder' element={<ManageOrder></ManageOrder>}></Route>
             <Route path='addProfile' element={<AddProfile></AddProfile>}></Route>
             <Route path='payment/:id' element={<Payment></Payment>}></Route>
-            {/* <Route path='update/:id' element={<UpdateUser></UpdateUser>}></Route> */}
+            <Route path='update' element={<UpdateUser></UpdateUser>}></Route>
 
             <Route path='users' element={<RequireAdmin>
               <AllUsers></AllUsers>
