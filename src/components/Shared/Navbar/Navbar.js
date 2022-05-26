@@ -9,6 +9,8 @@ const Navbar = () => {
 
     const [user] = useAuthState(auth);
     const [admin] = useAdmin(user);
+
+    console.log('user', user, admin);
     
     const logout = () => {
         signOut(auth);
@@ -18,19 +20,24 @@ const Navbar = () => {
     const menuItems = <>
         <li><Link to='/home'>Home</Link></li>
         <li><Link to='/blog'>Blog</Link></li>
-
         {/* {
         admin ? <li><Link to="/dashboard/manageOrder">Dashboard</Link></li> :
         <li><Link to="/dashboard/myOrder">Dashboard</Link></li>
         } */}
         
-        {
-         user && <li><Link to="/dashboard/myOrder">Dashboard</Link></li>
-        }
-
-        {
-            admin && <li><Link to="/dashboard/manageOrder">Dashboard</Link></li>
-        }
+        
+        {admin?
+        <>
+            <li><Link to="/dashboard/manageOrder">Dashboard</Link></li>
+            </>
+        :(
+            <>
+             <li>
+            <Link to="/dashboard/myOrder">Dashboard</Link>
+            </li>
+            </>
+        )}
+        
 
         <li>{user ? <button onClick={logout} className="btn btn-ghost" >Sign Out</button> : <Link to="/login">Login</Link>}</li>
     </>

@@ -9,26 +9,24 @@ const Purchase = () => {
     const { ProductId } = useParams();
     const [product, setProduct] = useState({});
     const [user, loading, error] = useAuthState(auth);
+    const [count, setCount] = useState(0);
 
-    const [count, setCount] = useState(parseInt(0));
-
-    const handleDecrement = () => {
-
-        if (product.minQuantity > 0) {
-            setCount(product.minQuantity = (parseInt(product.minQuantity) - 1));
+    useEffect(() => {
+        if(product){
+            setCount(product?.minQuantity);
         }
-
-        // if(product.minQuantity >= !product.minQuantity){
-        //     alert('You can not order less than this amount');
-        // }
-    }
+    },[product])
 
 
     const handleIncrement = () => {
         if (product.minQuantity < product.availableQuantity) {
-            setCount(product.minQuantity = (parseInt(product.minQuantity) + 1));
+            setCount(count + 1);        
         }
+    }
 
+    const handleDecrement = () => {
+        if (product.minQuantity >= count) return
+        setCount(count - 1);
     }
 
     useEffect(() => {
@@ -67,6 +65,7 @@ const Purchase = () => {
 
     const totalPrice = ((product.minQuantity) * (product.price));
 
+    if(!product) return <></>
 
     return (
         <div className='ml-[20px] mt-[50px] '>
@@ -87,7 +86,7 @@ const Purchase = () => {
                     {/* <p className='md:ml-[500px] w-full'>Min Quantity</p> */}
                     <div className="md:ml-[500px] w-full mt-4 border  max-w-sm flex justify-between items-center">
                         <button type='button' className='text-center pl-4 text-red-800 font-bold text-3xl' onClick={handleDecrement}> - </button>
-                        <div className='pl-4 text-2xl font-bold'>{product.minQuantity}</div>
+                        <div className='pl-4 text-2xl font-bold'>{count}</div>
                         <button className='pr-4 text-green-800 font-bold text-3xl' onClick={handleIncrement} type='button'> + </button>
                     </div>
                 </div>

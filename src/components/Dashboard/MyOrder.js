@@ -1,7 +1,8 @@
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; 
+import useAdmin from '../hooks/useAdmin'
 import auth from '../../firebase.init';
 import Loading from '../Firebase/Loading'
 const MyOrder = () => {
@@ -10,7 +11,9 @@ const MyOrder = () => {
     const[users, setUsers] = useState([]);
     const [orders, setOrders] = useState([]);
     const navigate = useNavigate();
+    const [admin] = useAdmin(user);
 
+    
     useEffect(() => {
         if (user.email) {
             fetch(`http://localhost:5000/order?customer=${user.email}`,{
@@ -20,6 +23,7 @@ const MyOrder = () => {
                 }
             })
                 .then(res => {
+                    console.log('res', res.body)
                     if (res.status === 401 || res.status === 403) {
                         signOut(auth);
                         localStorage.removeItem('accessToken');

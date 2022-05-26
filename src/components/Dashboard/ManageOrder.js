@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import '../Dashboard/ManageOrder.css';
+import OrderRow from '../../components/OrderRow/OrderRow';
 const ManageOrder = () => {
-
+    const { id } = useParams
     const [orders, setOrders] = useState([]);
+    const [status, setStatus] = useState(false);
+    // const [item, setItem] = useState();
+
 
     useEffect(() => {
         fetch('http://localhost:5000/AllOrder')
@@ -11,10 +15,34 @@ const ManageOrder = () => {
             .then(data => setOrders(data));
     }, []);
 
-    
+    // ---------------------update button-----------------------//
+
+
+    const delivered = (id) => {
+
+
+        fetch(`http://localhost:5000/statusOrder/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify()
+
+        }).then(res => res.json())
+            .then(data => {
+                setStatus(true);
+                // setItem(data)
+                console.log(data);
+            })
+
+
+    }
+
+
     return (
         <div>
-        
+
             <div className="overflow-x-auto manage-table mt-5">
                 <table className="table w-full manage-table">
 
@@ -35,33 +63,11 @@ const ManageOrder = () => {
                     <tbody>
 
                         {
-                            orders.map((order, index) => <tr key={order._id}>
-                                <th>{index + 1}</th>
-                                <td>{order.customerName}</td>
-                                <td>{order.customer}</td>
-                                <td>{order.order}</td>
-                                <td>{order.phone}</td>
-                                <td>{order.address}</td>
-                                <td>{order.price}</td>
-                                <td>{order.info}</td>
-
-                                <td>{(order.price && !order.paid) && <p className='text-primary text-xl p-2'>Unpaid</p>}
-                                {(order.price && order.paid) && <div>
-                                    <p><span className='text-success text-xl'>Paid</span></p>
-                                </div>}
-                                 </td>
-
-                                <td>{(order.price && !order.paid) && <p className='text-primary text-xl p-2'>Pending</p>}
-                                {(order.price && order.paid) && <div>
-                                    <p><span className='text-success text-xl'>Delivered</span></p>
-                                </div>}
-                                 </td>
-
-                               
-
-                                {/* <button onClick={() => handleDelete(tool._id)} className=' btn btn-sm btn-[red-600]'>Delete</button> */}
-
-                            </tr>)
+                            orders.map((order, index) => (
+                                <OrderRow order={order} index={index} delivered={delivered}/>
+                                
+                            )
+                           )
                         }
 
 
