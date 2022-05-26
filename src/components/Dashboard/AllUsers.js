@@ -25,6 +25,8 @@ const AllUsers = () => {
                     <tr>
                         <th></th>
                         <th>Name</th>
+                        <th></th>
+                        <th></th>
                      
                     </tr>
                 </thead>

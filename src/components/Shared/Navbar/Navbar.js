@@ -18,7 +18,6 @@ const Navbar = () => {
     const menuItems = <>
         <li><Link to='/home'>Home</Link></li>
         <li><Link to='/blog'>Blog</Link></li>
-        <li><Link to='/contact'>Contact Us</Link></li>
 
         {/* {
         admin ? <li><Link to="/dashboard/manageOrder">Dashboard</Link></li> :

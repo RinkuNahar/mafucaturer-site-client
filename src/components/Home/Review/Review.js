@@ -13,8 +13,8 @@ const Review = () => {
 
     return (
         <div className='mt-[250px]'>
-            <h2 className='text-3xl text-center text-red-800 font-bold'>Reviews</h2>
-        <div className=' tool '>
+            <h2 className='text-3xl text-center text-red-800 font-bold review-header'>Reviews</h2>
+        <div className=' tool review '>
             {
                 reviews.map(review=> <ReviewEach key={review._id} review={review}
                 ></ReviewEach>)

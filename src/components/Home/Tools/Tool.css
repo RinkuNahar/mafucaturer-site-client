@@ -6,3 +6,19 @@
 .tool-img{
     height: 300px;
 }
+
+@media(max-width:540px){
+    .tool{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+    }
+
+    .review{
+        margin-top: 50px;
+    }
+
+    .review-header{
+        margin-top: 1400px;
+    }
+    
+}

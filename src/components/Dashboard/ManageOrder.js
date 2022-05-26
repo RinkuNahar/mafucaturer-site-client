@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import '../Dashboard/ManageOrder.css';
 const ManageOrder = () => {
 
     const [orders, setOrders] = useState([]);
@@ -14,14 +14,12 @@ const ManageOrder = () => {
     
     return (
         <div>
-            <h2>Manage Orders {orders.length}</h2>
-
-            
-            <div className="overflow-x-auto">
-                <table className="table w-full">
+        
+            <div className="overflow-x-auto manage-table mt-5">
+                <table className="table w-full manage-table">
 
                     <thead>
-                        <tr>
+                        <tr >
                             <th></th>
                             <th>Name</th>
                             <th>Email</th>
@@ -31,7 +29,7 @@ const ManageOrder = () => {
                             <th>Price</th>
                             <th>Info</th>
                             <th>Status</th>
-
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
