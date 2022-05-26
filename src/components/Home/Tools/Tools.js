@@ -15,7 +15,7 @@ const Tools = () => {
 
     return (
    <div className='mt-[500px]'>
-            <h2 className='text-3xl text-center text-red-800 font-bold'>Tools</h2>
+            <h2 className='text-3xl text-center text-red-800 font-bold underline underline-offset-1'>Tools</h2>
         <div className=' tool '>
             {
                 tools.map(tool=> <Tool key={tool._id} tool={tool}

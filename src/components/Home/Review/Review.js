@@ -12,8 +12,8 @@ const Review = () => {
     },[])
 
     return (
-        <div className='mt-[250px]'>
-            <h2 className='text-3xl text-center text-red-800 font-bold review-header'>Reviews</h2>
+        <div className='mt-[120px] ml-12'>
+            <h2 className='text-3xl text-center text-red-800 font-bold review-header underline underline-offset-1'>Reviews</h2>
         <div className=' tool review '>
             {
                 reviews.map(review=> <ReviewEach key={review._id} review={review}

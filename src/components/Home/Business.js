@@ -7,7 +7,7 @@ import '../Home/Business.css';
 
 const Business = () => {
     return (
-        <div className='h-[500px] mt-[120px]'>
+        <div className='h-[500px] mt-[120px] ml-12'>
            <div>
            <h2 className='text-center text-5xl font-bold text-green-800'>Wherever there is FAITH, There we are</h2>
             <h2 className='text-3xl font-bold text-center text-red-400 mt-7'>Your BestFriend for decorate your desire Location</h2>

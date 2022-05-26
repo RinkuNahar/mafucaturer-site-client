@@ -6,7 +6,7 @@ const Portfolio = () => {
     return (
         <div className='mt-12'>
         <hr />
-        <h2 className='text-danger font-bold text-4xl text-indigo-800 text-center mt-4 mb-4'>My Portfolio</h2>
+        <h2 className='text-danger font-bold text-4xl text-indigo-800 text-center mt-4 mb-4 underline underline-offset-1'>My Portfolio</h2>
         <hr />
     <div className='container contact-container mt-12'>
       <div className='ml-[200px]'>
