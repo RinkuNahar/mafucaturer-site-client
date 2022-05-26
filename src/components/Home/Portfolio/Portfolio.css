@@ -1,0 +1,15 @@
+.contact-img{
+    height: 300px;
+}
+
+.contact-container{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
+@media(max-width:540px){
+    .contact-container{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+    }
+}
