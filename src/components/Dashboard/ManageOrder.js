@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ManageOrder = () => {
 
@@ -9,6 +10,8 @@ const ManageOrder = () => {
             .then(res => res.json())
             .then(data => setOrders(data));
     }, []);
+
+    
     return (
         <div>
             <h2>Manage Orders {orders.length}</h2>
@@ -27,6 +30,7 @@ const ManageOrder = () => {
                             <th>Address</th>
                             <th>Price</th>
                             <th>Info</th>
+                            <th>Status</th>
 
                         </tr>
                     </thead>
@@ -42,6 +46,20 @@ const ManageOrder = () => {
                                 <td>{order.address}</td>
                                 <td>{order.price}</td>
                                 <td>{order.info}</td>
+
+                                <td>{(order.price && !order.paid) && <p className='text-primary text-xl p-2'>Unpaid</p>}
+                                {(order.price && order.paid) && <div>
+                                    <p><span className='text-success text-xl'>Paid</span></p>
+                                </div>}
+                                 </td>
+
+                                <td>{(order.price && !order.paid) && <p className='text-primary text-xl p-2'>Pending</p>}
+                                {(order.price && order.paid) && <div>
+                                    <p><span className='text-success text-xl'>Delivered</span></p>
+                                </div>}
+                                 </td>
+
+                               
 
                                 {/* <button onClick={() => handleDelete(tool._id)} className=' btn btn-sm btn-[red-600]'>Delete</button> */}
 
