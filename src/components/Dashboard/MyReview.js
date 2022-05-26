@@ -9,7 +9,7 @@ const MyReview = () => {
 
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/review?review=${user.email}`)
+            fetch(`https://calm-beyond-40705.herokuapp.com/review?review=${user.email}`)
                 .then(res => res.json())
                 .then(data => setReviews(data))
         }

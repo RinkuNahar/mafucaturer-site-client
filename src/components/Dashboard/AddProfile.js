@@ -14,7 +14,7 @@ const AddProfile = () => {
     
     const onSubmit = data => {
         console.log(data);
-        const url = `http://localhost:5000/profile`
+        const url = `https://calm-beyond-40705.herokuapp.com/profile`
         fetch(url, {
             method: 'POST',
             headers: {

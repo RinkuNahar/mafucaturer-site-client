@@ -10,7 +10,7 @@ const ManageOrder = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/AllOrder')
+        fetch('https://calm-beyond-40705.herokuapp.com/AllOrder')
             .then(res => res.json())
             .then(data => setOrders(data));
     }, []);
@@ -20,7 +20,7 @@ const ManageOrder = () => {
 
     const delivered = (id) => {
 
-        fetch(`http://localhost:5000/statusOrder/${id}`, {
+        fetch(`https://calm-beyond-40705.herokuapp.com/statusOrder/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

@@ -6,7 +6,7 @@ const ManageProducts = () => {
     const [tools, setTools] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/purchase')
+        fetch('https://calm-beyond-40705.herokuapp.com/purchase')
             .then(res => res.json())
             .then(data => setTools(data));
     }, []);
@@ -14,7 +14,7 @@ const ManageProducts = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are You Sure');
         if (proceed) {
-            const url = `http://localhost:5000/purchase/${id}`;
+            const url = `https://calm-beyond-40705.herokuapp.com/purchase/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

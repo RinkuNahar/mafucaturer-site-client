@@ -12,7 +12,7 @@ import Loading from '../Firebase/Loading';
 const MyProfile = () => {
 
     const { data: profile, isLoading } = useQuery('profiles',
-        () => fetch('http://localhost:5000/profile')
+        () => fetch('https://calm-beyond-40705.herokuapp.com/profile')
             .then(res => res.json()));
 
     const [user, loading] = useAuthState(auth);
@@ -24,7 +24,7 @@ const MyProfile = () => {
 
     useEffect(() => {
         if (user.email) {
-            fetch(`http://localhost:5000/profile?customer=${user.email}`, {
+            fetch(`https://calm-beyond-40705.herokuapp.com/profile?customer=${user.email}`, {
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -53,7 +53,7 @@ const MyProfile = () => {
 
     //----------- update-------------//
     const updateProfile =(id)=>{
-        fetch(`http://localhost:5000/profile/${id}`)
+        fetch(`https://calm-beyond-40705.herokuapp.com/profile/${id}`)
         .then(res=>res.json())
         .then(data=>{
             console.log(data);

@@ -8,7 +8,7 @@ const Tools = () => {
     const [order, setOrder] = useState(null);
 
     useEffect(()=>{
-        fetch('http://localhost:5000/purchase')
+        fetch('https://calm-beyond-40705.herokuapp.com/purchase')
         .then(res=>res.json())
         .then(data=>setTools(data));
     },[]);

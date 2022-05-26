@@ -6,7 +6,7 @@
 // const UpdateUser = ({profile}) => {
 //     // const [status, setStatus] = useState(p.id?true: false)
 //  const{name} = profile
-//    fetch(`http://localhost:5000/profile/${name}`)
+//    fetch(`https://calm-beyond-40705.herokuapp.com/profile/${name}`)
 //         .then(res=>res.json())
 //         .then(data=>{
 //             console.log(data);

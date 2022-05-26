@@ -7,7 +7,7 @@ const AddReview = () => {
 
     const onSubmit = data => {
         console.log(data);
-        const url = `http://localhost:5000/myReviews`
+        const url = `https://calm-beyond-40705.herokuapp.com/myReviews`
         fetch(url, {
             method: 'POST',
             headers: {
@@ -27,6 +27,7 @@ const AddReview = () => {
             <form className='m-4' onSubmit={handleSubmit(onSubmit)}>
                 <input className='mt-2 w-50 input input-bordered' placeholder='Your Name'{...register("name", { required: true, maxLength: 20 })} /> <br />
                 <textarea className='mt-2 w-50 input input-bordered' placeholder='Description' {...register("about")} /> <br />
+                <textarea className='mt-2 w-50 input input-bordered' placeholder='Give Ratings' {...register("ratings")} /> <br />
                 <input className='mt-2 w-50 input input-bordered' placeholder='Photo URL' type="text" {...register("img")} /> <br />
                 <input className='mt-2 btn btn-primary' value="Add Reviews" type='submit' />
             </form>

@@ -16,7 +16,7 @@ const MyOrder = () => {
     
     useEffect(() => {
         if (user.email) {
-            fetch(`http://localhost:5000/order?customer=${user.email}`,{
+            fetch(`https://calm-beyond-40705.herokuapp.com/order?customer=${user.email}`,{
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -44,7 +44,7 @@ const MyOrder = () => {
        const proceed = window.confirm('Are You Sure You Want To Delete?');
        if(proceed){
            console.log(id);
-           const url =`http://localhost:5000/order/${id}`;
+           const url =`https://calm-beyond-40705.herokuapp.com/order/${id}`;
            fetch(url,{
                method: 'DELETE',
            })
